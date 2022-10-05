@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Layout } from 'antd'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Home from './components/Home';
+import Details from './components/Details';
 
-function App() {
+const { Header, Footer, Content } = Layout;
+const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/comments/:id",
+      element: <Details />,
+    },
+]);
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+        <Header>
+            <h3>HP Dev Co Assignment</h3>
+        </Header>
+        <Content>
+            <RouterProvider router={router}>
+                <Home />
+                <Details />
+            </RouterProvider>
+        </Content>
+        <Footer>
+            Created with antd, React Query
+        </Footer>
+    </Layout>
   );
 }
-
-export default App;
